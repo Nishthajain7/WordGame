@@ -1,26 +1,32 @@
-//
-//  ContentView.swift
-//  WordGame
-//
-//  Created by Nishtha Jain on 8/21/25.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var viewModel = WordGameViewModel(letters: ["C", "A", "T", "R", "E", "P"])
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Text("Word Builder")
+                .font(.largeTitle)
+                .padding()
+            
+            LettersRow(viewModel: viewModel)
+            
+            Text("Current Word: \(viewModel.currentWord)")
+                .font(.title3)
+                .padding()
+            
+            ActionButtons(viewModel: viewModel)
+            
+            Text(viewModel.message)
+                .foregroundColor(.red)
+                .padding()
+            
+            Text("Score: \(viewModel.score)")
+                .font(.title2)
+                .bold()
+            
+            Spacer()
         }
-        .padding()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+        .frame(maxWidth: .infinity)
     }
 }

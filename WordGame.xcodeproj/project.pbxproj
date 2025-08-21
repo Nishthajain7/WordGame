@@ -14,6 +14,12 @@
 		854F401A2E56D20E003E182E /* WordGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854F40192E56D20E003E182E /* WordGameTests.swift */; };
 		854F40242E56D20F003E182E /* WordGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854F40232E56D20F003E182E /* WordGameUITests.swift */; };
 		854F40262E56D20F003E182E /* WordGameUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854F40252E56D20F003E182E /* WordGameUITestsLaunchTests.swift */; };
+		854F40342E56D336003E182E /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 854F40332E56D336003E182E /* SQLite */; };
+		859E4ED02E579990004D3AA5 /* Letter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E4ECF2E579990004D3AA5 /* Letter.swift */; };
+		859E4ED22E579A23004D3AA5 /* WordGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E4ED12E579A23004D3AA5 /* WordGameViewModel.swift */; };
+		859E4ED52E579A7B004D3AA5 /* WordGameModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E4ED42E579A7B004D3AA5 /* WordGameModels.swift */; };
+		859E4ED72E579CF5004D3AA5 /* LettersRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E4ED62E579CF5004D3AA5 /* LettersRow.swift */; };
+		859E4ED92E579DD9004D3AA5 /* ActionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E4ED82E579DD9004D3AA5 /* ActionButtons.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +51,11 @@
 		854F401F2E56D20F003E182E /* WordGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WordGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		854F40232E56D20F003E182E /* WordGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordGameUITests.swift; sourceTree = "<group>"; };
 		854F40252E56D20F003E182E /* WordGameUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordGameUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		859E4ECF2E579990004D3AA5 /* Letter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Letter.swift; sourceTree = "<group>"; };
+		859E4ED12E579A23004D3AA5 /* WordGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordGameViewModel.swift; sourceTree = "<group>"; };
+		859E4ED42E579A7B004D3AA5 /* WordGameModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordGameModels.swift; sourceTree = "<group>"; };
+		859E4ED62E579CF5004D3AA5 /* LettersRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LettersRow.swift; sourceTree = "<group>"; };
+		859E4ED82E579DD9004D3AA5 /* ActionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtons.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				854F40342E56D336003E182E /* SQLite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +107,9 @@
 		854F40062E56D20D003E182E /* WordGame */ = {
 			isa = PBXGroup;
 			children = (
+				859E4ED32E579A65004D3AA5 /* Models */,
+				859E4ECE2E5798A4004D3AA5 /* ViewModels */,
+				859E4ECD2E57989E004D3AA5 /* Views */,
 				854F40072E56D20D003E182E /* WordGameApp.swift */,
 				854F40092E56D20D003E182E /* ContentView.swift */,
 				854F400B2E56D20E003E182E /* Assets.xcassets */,
@@ -129,6 +144,32 @@
 			path = WordGameUITests;
 			sourceTree = "<group>";
 		};
+		859E4ECD2E57989E004D3AA5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				859E4ECF2E579990004D3AA5 /* Letter.swift */,
+				859E4ED62E579CF5004D3AA5 /* LettersRow.swift */,
+				859E4ED82E579DD9004D3AA5 /* ActionButtons.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		859E4ECE2E5798A4004D3AA5 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				859E4ED12E579A23004D3AA5 /* WordGameViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		859E4ED32E579A65004D3AA5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				859E4ED42E579A7B004D3AA5 /* WordGameModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -145,6 +186,9 @@
 			dependencies = (
 			);
 			name = WordGame;
+			packageProductDependencies = (
+				854F40332E56D336003E182E /* SQLite */,
+			);
 			productName = WordGame;
 			productReference = 854F40042E56D20D003E182E /* WordGame.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +261,9 @@
 				Base,
 			);
 			mainGroup = 854F3FFB2E56D20C003E182E;
+			packageReferences = (
+				854F40322E56D336003E182E /* XCRemoteSwiftPackageReference "SQLite.swift" */,
+			);
 			productRefGroup = 854F40052E56D20D003E182E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,6 +306,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				859E4ED92E579DD9004D3AA5 /* ActionButtons.swift in Sources */,
+				859E4ED22E579A23004D3AA5 /* WordGameViewModel.swift in Sources */,
+				859E4ED02E579990004D3AA5 /* Letter.swift in Sources */,
+				859E4ED72E579CF5004D3AA5 /* LettersRow.swift in Sources */,
+				859E4ED52E579A7B004D3AA5 /* WordGameModels.swift in Sources */,
 				854F400A2E56D20D003E182E /* ContentView.swift in Sources */,
 				854F40082E56D20D003E182E /* WordGameApp.swift in Sources */,
 			);
@@ -415,7 +467,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WordGame/Preview Content\"";
-				ENABLE_PREVIEWS = YES;
+				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -451,7 +503,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WordGame/Preview Content\"";
-				ENABLE_PREVIEWS = YES;
+				ENABLE_PREVIEWS = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -604,6 +656,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		854F40322E56D336003E182E /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		854F40332E56D336003E182E /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 854F40322E56D336003E182E /* XCRemoteSwiftPackageReference "SQLite.swift" */;
+			productName = SQLite;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 854F3FFC2E56D20C003E182E /* Project object */;
 }
