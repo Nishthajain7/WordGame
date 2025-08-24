@@ -20,6 +20,8 @@
 		859E4ED52E579A7B004D3AA5 /* WordGameModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E4ED42E579A7B004D3AA5 /* WordGameModels.swift */; };
 		859E4ED72E579CF5004D3AA5 /* LettersRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E4ED62E579CF5004D3AA5 /* LettersRow.swift */; };
 		859E4ED92E579DD9004D3AA5 /* ActionButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E4ED82E579DD9004D3AA5 /* ActionButtons.swift */; };
+		859E4EDC2E5AD6D7004D3AA5 /* words.db in Resources */ = {isa = PBXBuildFile; fileRef = 859E4EDB2E5AD6D7004D3AA5 /* words.db */; };
+		859E4EDE2E5AD785004D3AA5 /* WordDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859E4EDD2E5AD785004D3AA5 /* WordDatabase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		859E4ED42E579A7B004D3AA5 /* WordGameModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordGameModels.swift; sourceTree = "<group>"; };
 		859E4ED62E579CF5004D3AA5 /* LettersRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LettersRow.swift; sourceTree = "<group>"; };
 		859E4ED82E579DD9004D3AA5 /* ActionButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButtons.swift; sourceTree = "<group>"; };
+		859E4EDB2E5AD6D7004D3AA5 /* words.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = words.db; sourceTree = "<group>"; };
+		859E4EDD2E5AD785004D3AA5 /* WordDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDatabase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,7 @@
 		854F40062E56D20D003E182E /* WordGame */ = {
 			isa = PBXGroup;
 			children = (
+				859E4EDA2E5AD680004D3AA5 /* assets */,
 				859E4ED32E579A65004D3AA5 /* Models */,
 				859E4ECE2E5798A4004D3AA5 /* ViewModels */,
 				859E4ECD2E57989E004D3AA5 /* Views */,
@@ -166,8 +171,17 @@
 			isa = PBXGroup;
 			children = (
 				859E4ED42E579A7B004D3AA5 /* WordGameModels.swift */,
+				859E4EDD2E5AD785004D3AA5 /* WordDatabase.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		859E4EDA2E5AD680004D3AA5 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				859E4EDB2E5AD6D7004D3AA5 /* words.db */,
+			);
+			path = assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,6 +294,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				859E4EDC2E5AD6D7004D3AA5 /* words.db in Resources */,
 				854F40102E56D20E003E182E /* Preview Assets.xcassets in Resources */,
 				854F400C2E56D20E003E182E /* Assets.xcassets in Resources */,
 			);
@@ -312,6 +327,7 @@
 				859E4ED72E579CF5004D3AA5 /* LettersRow.swift in Sources */,
 				859E4ED52E579A7B004D3AA5 /* WordGameModels.swift in Sources */,
 				854F400A2E56D20D003E182E /* ContentView.swift in Sources */,
+				859E4EDE2E5AD785004D3AA5 /* WordDatabase.swift in Sources */,
 				854F40082E56D20D003E182E /* WordGameApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

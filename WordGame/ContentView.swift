@@ -1,8 +1,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var viewModel = WordGameViewModel(letters: ["C", "A", "T", "R", "E", "P"])
-    
+    @StateObject private var viewModel = WordGameViewModel(
+        letters: ["B", "A", "T", "R", "E", "P"],
+        dbPath: Bundle.main.path(forResource: "words", ofType: "db")!
+    )
     var body: some View {
         VStack {
             Text("Word Builder")
@@ -18,7 +20,7 @@ struct ContentView: View {
             ActionButtons(viewModel: viewModel)
             
             Text(viewModel.message)
-                .foregroundColor(.red)
+                .foregroundColor(viewModel.messageColor)
                 .padding()
             
             Text("Score: \(viewModel.score)")
