@@ -3,32 +3,48 @@ import SwiftUI
 struct ContentView: View {
     @StateObject private var viewModel = WordGameViewModel(
         letters: ["B", "A", "T", "R", "E", "P"],
-        dbPath: Bundle.main.path(forResource: "words", ofType: "db")!
+        dbPath: Bundle.main.path(forResource: "words", ofType: "db") ?? ""
     )
+    
     var body: some View {
-        VStack {
-            Text("Word Builder")
-                .font(.largeTitle)
-                .padding()
-            
-            LettersRow(viewModel: viewModel)
-            
-            Text("Current Word: \(viewModel.currentWord)")
-                .font(.title3)
-                .padding()
-            
-            ActionButtons(viewModel: viewModel)
-            
-            Text(viewModel.message)
-                .foregroundColor(viewModel.messageColor)
-                .padding()
-            
-            Text("Score: \(viewModel.score)")
-                .font(.title2)
-                .bold()
-            
-            Spacer()
+        NavigationView {
+            ZStack {
+                // Background gradient
+                LinearGradient(
+                    colors: [Color.blue.opacity(0.1), Color.purple.opacity(0.1)],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+                .ignoresSafeArea()
+                
+                ScrollView {
+                    VStack(spacing: 20) {
+                        // Header
+                        HeaderView(viewModel: viewModel)
+                        
+                        // Letter tiles
+                        LetterTilesView(viewModel: viewModel)
+                        
+                        // Current word display
+                        CurrentWordView(viewModel: viewModel)
+                        
+                        // Action buttons
+                        ActionButtonsView(viewModel: viewModel)
+                        
+                        // Message
+                        MessageView(viewModel: viewModel)
+                        
+                        // Stats
+                        StatsView(viewModel: viewModel)
+                        
+                        Spacer(minLength: 20)
+                    }
+                    .padding()
+                }
+            }
         }
-        .frame(maxWidth: .infinity)
+        .sheet(isPresented: $viewModel.showingWordsList) {
+            FoundWordsView(words: viewModel.foundWords, score: viewModel.score)
+        }
     }
 }
