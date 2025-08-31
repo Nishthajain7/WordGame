@@ -37,6 +37,10 @@ struct ContentView: View {
                         // Stats
                         StatsView(viewModel: viewModel)
                         
+                        if viewModel.foundWords.isEmpty==false {
+                            FoundWordsDisplayView(viewModel: viewModel)
+                        }
+                        
                         Spacer(minLength: 20)
                     }
                     .padding()
@@ -45,6 +49,5 @@ struct ContentView: View {
         }
         .sheet(isPresented: $viewModel.showingWordsList) {
             FoundWordsView(words: viewModel.foundWords, score: viewModel.score)
-        }
-    }
+        }        }
 }

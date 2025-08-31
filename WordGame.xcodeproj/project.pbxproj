@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		85396DFC2E6425EF00A62ACD /* WordChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85396DFB2E6425EF00A62ACD /* WordChip.swift */; };
 		854F40082E56D20D003E182E /* WordGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854F40072E56D20D003E182E /* WordGameApp.swift */; };
 		854F400A2E56D20D003E182E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854F40092E56D20D003E182E /* ContentView.swift */; };
 		854F400C2E56D20E003E182E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 854F400B2E56D20E003E182E /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		85396DFB2E6425EF00A62ACD /* WordChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordChip.swift; sourceTree = "<group>"; };
 		854F40042E56D20D003E182E /* WordGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		854F40072E56D20D003E182E /* WordGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordGameApp.swift; sourceTree = "<group>"; };
 		854F40092E56D20D003E182E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -134,7 +136,6 @@
 				859E4ECE2E5798A4004D3AA5 /* ViewModels */,
 				859E4ECD2E57989E004D3AA5 /* Views */,
 				854F40072E56D20D003E182E /* WordGameApp.swift */,
-				854F40092E56D20D003E182E /* ContentView.swift */,
 				854F400B2E56D20E003E182E /* Assets.xcassets */,
 				854F400D2E56D20E003E182E /* WordGame.entitlements */,
 				854F400E2E56D20E003E182E /* Preview Content */,
@@ -170,6 +171,7 @@
 		859E4ECD2E57989E004D3AA5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				854F40092E56D20D003E182E /* ContentView.swift */,
 				859E4ECF2E579990004D3AA5 /* Letter.swift */,
 				859E4ED82E579DD9004D3AA5 /* ActionButtons.swift */,
 				8563AB0A2E5E44F700948922 /* HeaderView.swift */,
@@ -181,6 +183,7 @@
 				8563AB172E5E467A00948922 /* Stats.swift */,
 				8563AB192E5E473100948922 /* FoundWordsView.swift */,
 				8563AB1B2E5E478900948922 /* Buttons.swift */,
+				85396DFB2E6425EF00A62ACD /* WordChip.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				8563AB0D2E5E454100948922 /* LetterTilesView.swift in Sources */,
 				8563AB102E5E457F00948922 /* LetterTilesButton.swift in Sources */,
 				8563AB1A2E5E473100948922 /* FoundWordsView.swift in Sources */,
+				85396DFC2E6425EF00A62ACD /* WordChip.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
