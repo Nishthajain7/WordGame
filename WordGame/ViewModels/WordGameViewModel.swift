@@ -7,6 +7,7 @@ class WordGameViewModel: ObservableObject {
     @Published var messageColor: Color = .primary
     @Published var foundWords: [String] = []
     @Published var showingWordsList = false
+    @Published var selectedLetters: [String] = []
     
     private let database: WordDatabase?
     private let availableLettersMask: Int
@@ -20,41 +21,59 @@ class WordGameViewModel: ObservableObject {
     }
     
     var currentWord: String {
-        letterTiles
-            .filter { $0.isSelected }
-            .sorted { $0.selectionOrder < $1.selectionOrder }
-            .map { $0.letter }
-            .joined()
+        selectedLetters.joined()
     }
     
     var score: Int {
         model.score
     }
     
+    static func randomLetters(count: Int) -> [String] {
+        let letters = (0..<6).map { _ in String((65...90).map { Character(UnicodeScalar($0)!) }.randomElement()!) }
+        return letters.shuffled()
+    }
+
+    
     func selectLetter(at index: Int) {
         guard !letterTiles[index].isUsed else { return }
         
-        if letterTiles[index].isSelected {
-            let deselectedOrder = letterTiles[index].selectionOrder
-            letterTiles[index].isSelected = false
-            letterTiles[index].selectionOrder = 0
+        let letter = letterTiles[index].letter
+        
+        let currentCount = selectedLetters.filter { $0 == letter }.count
+        
+        let availableCount = letterTiles.filter { $0.letter == letter }.count
+        
+        if currentCount < availableCount {
+            selectedLetters.append(letter)
             
-            for i in letterTiles.indices {
-                if letterTiles[i].isSelected && letterTiles[i].selectionOrder > deselectedOrder {
-                    letterTiles[i].selectionOrder -= 1
-                }
-            }
-            
-            selectionCounter = letterTiles.filter { $0.isSelected }.count
-            
-        } else {
-            selectionCounter += 1
-            letterTiles[index].isSelected = true
-            letterTiles[index].selectionOrder = selectionCounter
+            updateTileStates()
         }
         
         updateMessage()
     }
+    
+    private func updateTileStates() {
+
+        for i in letterTiles.indices {
+            letterTiles[i].isSelected = false
+        }
+        
+        var letterCounts: [String: Int] = [:]
+        for letter in selectedLetters {
+            letterCounts[letter, default: 0] += 1
+        }
+        
+        for (letter, count) in letterCounts {
+            let tilesForLetter = letterTiles.enumerated().filter { $0.element.letter == letter }
+            
+            for (index, tileIndex) in tilesForLetter.enumerated() {
+                if index < count {
+                    letterTiles[tileIndex.offset].isSelected = true
+                }
+            }
+        }
+    }
+    
     func submitWord() {
         let word = currentWord.uppercased()
         
@@ -79,7 +98,6 @@ class WordGameViewModel: ObservableObject {
         }
         
         if database.isValidWord(word, availableLettersMask: availableLettersMask) {
-            // Valid word found!
             let points = calculatePoints(for: word)
             model.score += points
             model.usedWords.append(word)
@@ -93,11 +111,15 @@ class WordGameViewModel: ObservableObject {
     }
     
     func clearSelection() {
-        for i in letterTiles.indices {
-            letterTiles[i].isSelected = false
-            letterTiles[i].selectionOrder = 0
-        }
-        selectionCounter = 0
+        selectedLetters.removeAll()
+        updateTileStates()
+        updateMessage()
+    }
+    
+    func backspaceLetter() {
+        guard !selectedLetters.isEmpty else { return }
+        selectedLetters.removeLast()
+        updateTileStates()
         updateMessage()
     }
     
@@ -105,6 +127,8 @@ class WordGameViewModel: ObservableObject {
         model.score = 0
         model.usedWords.removeAll()
         foundWords.removeAll()
+        selectedLetters.removeAll()
+        selectionCounter = 0
         
         for i in letterTiles.indices {
             letterTiles[i].isSelected = false

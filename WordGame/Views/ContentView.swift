@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var viewModel = WordGameViewModel(
-        letters: ["B", "A", "T", "R", "E", "P"],
+        letters: WordGameViewModel.randomLetters(count: 6),
         dbPath: Bundle.main.path(forResource: "words", ofType: "db") ?? ""
     )
     

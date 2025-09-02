@@ -5,6 +5,14 @@ struct ActionButtonsView: View {
     
     var body: some View {
         HStack(spacing: 16) {
+            Button("Backspace") {
+                withAnimation(.easeInOut(duration: 0.2)) {
+                    viewModel.backspaceLetter()
+                }
+            }
+            .buttonStyle(SecondaryButtonStyle())
+            .disabled(viewModel.currentWord.isEmpty)
+            
             Button("Clear") {
                 withAnimation(.easeInOut(duration: 0.2)) {
                     viewModel.clearSelection()
@@ -13,7 +21,7 @@ struct ActionButtonsView: View {
             .buttonStyle(SecondaryButtonStyle())
             .disabled(viewModel.currentWord.isEmpty)
             
-            Button("Submit Word") {
+            Button("Enter") {
                 withAnimation(.easeInOut(duration: 0.3)) {
                     viewModel.submitWord()
                 }
