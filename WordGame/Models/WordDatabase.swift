@@ -1,47 +1,36 @@
 import Foundation
-import SQLite3
+import SQLite
 
 class WordDatabase {
-    private var db: OpaquePointer?
+    private let db: Connection
+    private let wordsTable = Table("words")
+    private let wordColumn = Expression<String>("word")
 
     init?(dbPath: String) {
-        if sqlite3_open(dbPath, &db) != SQLITE_OK {
-            print("Failed to open database")
+        do {
+            db = try Connection(dbPath)
+        } catch {
+            print("Failed to open database: \(error)")
             return nil
         }
     }
 
-    deinit {
-        sqlite3_close(db)
-    }
-
     func isValidWord(_ candidate: String, availableLettersMask: Int) -> Bool {
         let candidateMask = WordDatabase.makeMask(for: candidate)
-
         guard candidateMask & availableLettersMask == candidateMask else {
             return false
         }
 
-        let query = "SELECT COUNT(*) FROM words WHERE word = ?;"
-        let queryCString = query.cString(using: .utf8)!
-        var stmt: OpaquePointer?
-
-        if sqlite3_prepare_v2(db, queryCString, Int32(queryCString.count - 1), &stmt, nil) == SQLITE_OK {
-            let upperCaseCandidate = candidate.uppercased()
-            let cString = upperCaseCandidate.cString(using: .utf8)!
-            sqlite3_bind_text(stmt, 1, cString, Int32(cString.count - 1), nil)
-
-            if sqlite3_step(stmt) == SQLITE_ROW {
-                let count = sqlite3_column_int(stmt, 0)
-                sqlite3_finalize(stmt)
-                return count > 0
-            }
+        do {
+            let query = wordsTable.filter(wordColumn == candidate.uppercased())
+            return try db.scalar(query.count) > 0
+        } catch {
+            print("DB error: \(error)")
+            return false
         }
-
-        sqlite3_finalize(stmt)
-        return false
     }
 
+    /// Create a bitmask for letters in the word
     static func makeMask(for word: String) -> Int {
         var mask = 0
         for char in word.uppercased() {
