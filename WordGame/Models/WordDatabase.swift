@@ -23,9 +23,10 @@ class WordDatabase {
         }
 
         let query = "SELECT COUNT(*) FROM words WHERE word = ?;"
+        let queryCString = query.cString(using: .utf8)!
         var stmt: OpaquePointer?
 
-        if sqlite3_prepare_v2(db, query, -1, &stmt, nil) == SQLITE_OK {
+        if sqlite3_prepare_v2(db, queryCString, Int32(queryCString.count - 1), &stmt, nil) == SQLITE_OK {
             let upperCaseCandidate = candidate.uppercased()
             let cString = upperCaseCandidate.cString(using: .utf8)!
             sqlite3_bind_text(stmt, 1, cString, Int32(cString.count - 1), nil)

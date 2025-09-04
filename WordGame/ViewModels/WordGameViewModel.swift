@@ -29,8 +29,10 @@ class WordGameViewModel: ObservableObject {
     }
     
     static func randomLetters(count: Int) -> [String] {
-        let letters = (0..<6).map { _ in String((65...90).map { Character(UnicodeScalar($0)!) }.randomElement()!) }
-        return letters.shuffled()
+        let alphabet = (UnicodeScalar("A").value...UnicodeScalar("Z").value).compactMap {UnicodeScalar($0)}.map {String($0)}
+        let letters = Array(alphabet.shuffled().prefix(count))
+        
+        return letters
     }
 
     
